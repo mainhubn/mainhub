@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container text-center">
+    <div class="row">
+        <div class="col-8">
+            <h1>Meeps!</h1>
+            {% for meep in meeps %}
+                {% if meep.profile_image %}
+                <div class="alert alert-dark" role="alert">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2">
+                                {% for profile in profiles %}
+                                {% if profile.user.username == meep.user.username %}
+                                    {% if profile.profile_image %}
+                                        <img src="{{ profile.profile_image.url }}"  hight=75 width=75 class="img-fluid rounded-circle" alt="dif profile pic">
+                                    {% else %}
+                                        <img src="{% static 'images/profile_pic.jpg' %}" hight=50 width=50 class="img-fluid rounded-circle" alt="dif profile pic">
+                                    {% endif %}
+                                {% endif%}
+                            {% endfor %}
+                            </div>
+                            <div class="col-15">
+                                <h6>{{ meep.body }}</h6>
+                                <small class="text-muted">
+                                    {{ meep.created_at }} By {{ meep.user.username }}
+                                </small></br>
+                                <img src="{{meep.profile_image.url}}" class="card-img-bottom" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}                
+                <div class="alert alert-dark" role="alert">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2">
+                            {% for profile in profiles %}
+                                {% if profile.user.username == meep.user.username %}
+                                    {% if profile.profile_image %}
+                                        <img src="{{ profile.profile_image.url }}"  hight=75 width=75 class="img-fluid rounded-circle" alt="dif profile pic">
+                                    {% else %}
+                                        <img src="{% static 'images/profile_pic.jpg' %}" hight=50 width=50 class="img-fluid rounded-circle" alt="dif profile pic">
+                                    {% endif %}
+                                {% endif%}
+                            {% endfor %}
+                            </div>
+                            <div class="col-10">
+                                <h6>{{ meep.body }}</h6>
+                                <small class="text-muted">
+                                    {{ meep.created_at }} By {{ meep.user.username }}
+                                </small>
+                            </div><br/>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}  
+        </div>
+        <div class="col-4">
+            <br/><br/><br/>
+            {% if form %}
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {{ Meepprofilepic_form.as_p}}
+
+
+                <button type="submit" class="btn btn-secondary">Meep!</button>
+              </form>
+            {% endif %}
+        </div>
+        <br/><br/>
+       
+    </div>
+</div>
+<br/>
+
+{% endblock %}    

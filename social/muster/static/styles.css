@@ -1,0 +1,25 @@
+html {
+  height: 100%;
+}
+
+body{
+  color:#ffffff
+}
+.hub {
+  display: block;
+  font-family: sans-serif;
+  font-weight: bold;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hub span:nth-child(2) {
+  background: #ffffff;
+  color: #000000;
+  border-radius: 1vw;
+  padding: 0 1vw 0 1vw;
+  display: inline-block;
+}
